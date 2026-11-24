@@ -5,16 +5,16 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 INSTALL_BIN_DIR="$HOME/.local/bin"
-INSTALL_BIN="$INSTALL_BIN_DIR/auto-english-ime"
+INSTALL_BIN="$INSTALL_BIN_DIR/keyghost"
 PLIST_DIR="$HOME/Library/LaunchAgents"
-PLIST_LABEL="com.auto-english-ime.agent"
+PLIST_LABEL="com.keyghost.agent"
 PLIST_PATH="$PLIST_DIR/$PLIST_LABEL.plist"
 UID_NUM="$(id -u)"
 
-echo "==> Building auto-english-ime..."
+echo "==> Building KeyGhost..."
 mkdir -p "$PROJECT_DIR/build" "$INSTALL_BIN_DIR" "$PLIST_DIR"
-swiftc -O "$PROJECT_DIR/Sources/main.swift" -o "$PROJECT_DIR/build/auto-english-ime"
-cp "$PROJECT_DIR/build/auto-english-ime" "$INSTALL_BIN"
+swiftc -O "$PROJECT_DIR/Sources/main.swift" -o "$PROJECT_DIR/build/keyghost"
+cp "$PROJECT_DIR/build/keyghost" "$INSTALL_BIN"
 chmod +x "$INSTALL_BIN"
 
 echo "==> Disabling macOS per-document input source switching..."
@@ -42,11 +42,11 @@ cat > "$PLIST_PATH" <<EOF
 </plist>
 EOF
 
-echo "==> Starting LaunchAgent..."
+echo "==> Starting KeyGhost LaunchAgent..."
 launchctl bootout "gui/$UID_NUM" "$PLIST_PATH" 2>/dev/null || true
 launchctl bootstrap "gui/$UID_NUM" "$PLIST_PATH"
 
 echo ""
-echo "Done! auto-english-ime is installed and running."
-echo "Optional config file: ~/.config/auto-english-ime/config.json"
+echo "✅ Done! KeyGhost is installed and running."
+echo "Optional config file: ~/.config/keyghost/config.json"
 echo "Run '$INSTALL_BIN --list' to see available input source IDs."

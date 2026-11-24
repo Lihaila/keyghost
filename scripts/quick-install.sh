@@ -1,31 +1,31 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="Lihaila/auto-english-ime"
+REPO="Lihaila/keyghost"
 INSTALL_BIN_DIR="$HOME/.local/bin"
-INSTALL_BIN="$INSTALL_BIN_DIR/auto-english-ime"
+INSTALL_BIN="$INSTALL_BIN_DIR/keyghost"
 PLIST_DIR="$HOME/Library/LaunchAgents"
-PLIST_LABEL="com.auto-english-ime.agent"
+PLIST_LABEL="com.keyghost.agent"
 PLIST_PATH="$PLIST_DIR/$PLIST_LABEL.plist"
 UID_NUM="$(id -u)"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
-    echo "Error: auto-english-ime only supports macOS." >&2
+    echo "Error: KeyGhost only supports macOS." >&2
     exit 1
 fi
 
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "$TMP_DIR"' EXIT
 
-echo "🚀 Installing auto-english-ime..."
+echo "👻 Installing KeyGhost..."
 mkdir -p "$INSTALL_BIN_DIR" "$PLIST_DIR"
 
-DOWNLOAD_URL="https://github.com/$REPO/releases/latest/download/auto-english-ime-macos-universal.tar.gz"
+DOWNLOAD_URL="https://github.com/$REPO/releases/latest/download/keyghost-macos-universal.tar.gz"
 
 echo "==> Downloading prebuilt Universal Binary (Apple Silicon & Intel)..."
-if curl -fsSL "$DOWNLOAD_URL" -o "$TMP_DIR/auto-english-ime.tar.gz"; then
-    tar -xzf "$TMP_DIR/auto-english-ime.tar.gz" -C "$TMP_DIR"
-    cp "$TMP_DIR/auto-english-ime" "$INSTALL_BIN"
+if curl -fsSL "$DOWNLOAD_URL" -o "$TMP_DIR/keyghost.tar.gz"; then
+    tar -xzf "$TMP_DIR/keyghost.tar.gz" -C "$TMP_DIR"
+    cp "$TMP_DIR/keyghost" "$INSTALL_BIN"
     chmod +x "$INSTALL_BIN"
     xattr -d com.apple.quarantine "$INSTALL_BIN" 2>/dev/null || true
 else
@@ -64,16 +64,16 @@ cat > "$PLIST_PATH" <<EOF
 </plist>
 EOF
 
-echo "==> Starting auto-english-ime..."
+echo "==> Starting KeyGhost..."
 launchctl bootout "gui/$UID_NUM" "$PLIST_PATH" 2>/dev/null || true
 launchctl bootstrap "gui/$UID_NUM" "$PLIST_PATH"
 
 echo ""
-echo "✅ Installation complete! auto-english-ime is now running in the background."
+echo "✅ KeyGhost is now haunting your keyboard in the background!"
 echo ""
 echo "Try it now:"
 echo "  1. Switch to Chinese (or any non-English input method) in one app"
-echo "  2. Switch to any other app — it will automatically switch back to English!"
+echo "  2. Switch to any other app — KeyGhost silently snaps it back to English!"
 echo ""
-echo "Optional config: ~/.config/auto-english-ime/config.json"
+echo "Optional config: ~/.config/keyghost/config.json"
 echo "Uninstall anytime: curl -fsSL https://raw.githubusercontent.com/$REPO/main/scripts/uninstall.sh | bash"

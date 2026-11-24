@@ -16,12 +16,12 @@ jobs:
       - name: Build Universal Binary
         run: |
           mkdir -p build
-          swiftc -O -target arm64-apple-macos13.0 Sources/main.swift -o build/auto-english-ime-arm64
-          swiftc -O -target x86_64-apple-macos13.0 Sources/main.swift -o build/auto-english-ime-x86_64
-          lipo -create -output build/auto-english-ime build/auto-english-ime-arm64 build/auto-english-ime-x86_64
-          lipo -info build/auto-english-ime
+          swiftc -O -target arm64-apple-macos13.0 Sources/main.swift -o build/keyghost-arm64
+          swiftc -O -target x86_64-apple-macos13.0 Sources/main.swift -o build/keyghost-x86_64
+          lipo -create -output build/keyghost build/keyghost-arm64 build/keyghost-x86_64
+          lipo -info build/keyghost
 
       - name: Smoke Test
         run: |
-          ./build/auto-english-ime --version
-          ./build/auto-english-ime --help
+          ./build/keyghost --version
+          ./build/keyghost --help

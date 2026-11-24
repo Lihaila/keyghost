@@ -2,12 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2026-11-24
+
+### Changed
+- Rebranded project to **KeyGhost** (`keyghost`) with a custom macOS icon logo.
+- Updated LaunchAgent label to `com.keyghost.agent` and config path to `~/.config/keyghost/config.json`.
+
 ## [0.1.0] - 2026-11-24
 
 ### Added
 - Native zero-dependency Swift daemon for macOS (`NSWorkspace` + `Carbon` `TISSelectInputSource`).
 - Automatic English input source detection (`ABC`, `U.S.`, `British`).
-- Optional JSON configuration (`~/.config/auto-english-ime/config.json`) with hot-reloading and per-app exclusions (`excludedApps`).
-- CLI flags: `--list`, `--input-source`, `--config`, `--verbose`, `--version`, `--help`.
-- One-line installer (`scripts/quick-install.sh`) downloading prebuilt Universal Binary (`arm64` + `x86_64`), plus source install (`scripts/install.sh`) and uninstall (`scripts/uninstall.sh`).
+- Optional JSON configuration with hot-reloading and per-app exclusions (`excludedApps`).
+- One-line installer (`scripts/quick-install.sh`) downloading prebuilt Universal Binary (`arm64` + `x86_64`), plus source install and uninstall scripts.
 - GitHub Actions CI and automated Universal Binary Release workflows.

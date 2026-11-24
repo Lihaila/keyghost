@@ -2,8 +2,8 @@ import AppKit
 import Carbon
 import Foundation
 
-let appVersion = "0.1.0"
-let defaultConfigPath = ("~/.config/auto-english-ime/config.json" as NSString).expandingTildeInPath
+let appVersion = "0.2.0"
+let defaultConfigPath = ("~/.config/keyghost/config.json" as NSString).expandingTildeInPath
 
 struct Config: Codable {
     var targetInputSource: String?
@@ -54,16 +54,16 @@ func parseArgs(_ args: [String]) -> Options {
 
 func printHelp() {
     print("""
-    auto-english-ime \(appVersion)
-    Lightweight macOS daemon that switches your input source back to English whenever you switch apps.
+    KeyGhost \(appVersion)
+    Invisible macOS background ghost that switches your input source back to English whenever you switch apps.
 
     USAGE:
-      auto-english-ime [OPTIONS]
+      keyghost [OPTIONS]
 
     OPTIONS:
       -l, --list                 List all enabled keyboard input source IDs and exit
       -i, --input-source <ID>    Target input source ID (default: auto-detect ABC or U.S.)
-      -c, --config <PATH>        Path to JSON config file (default: ~/.config/auto-english-ime/config.json)
+      -c, --config <PATH>        Path to JSON config file (default: ~/.config/keyghost/config.json)
       -v, --verbose              Print logs when switching apps/input sources
           --version              Show version
       -h, --help                 Show this help message
@@ -160,7 +160,7 @@ final class AppSwitchDaemon: NSObject {
             config = decoded
             lastConfigMTime = mtime
             if options.verbose {
-                print("[auto-english-ime] Loaded config from \(options.configPath)")
+                print("[keyghost] Loaded config from \(options.configPath)")
             }
         }
     }
@@ -182,7 +182,7 @@ final class AppSwitchDaemon: NSObject {
         let target = effectiveTargetID
         let switched = selectInputSource(id: target)
         if options.verbose && switched {
-            print("[auto-english-ime] Switched to \(target) (\(reason))")
+            print("[keyghost] Switched to \(target) (\(reason))")
         }
     }
 
@@ -192,7 +192,7 @@ final class AppSwitchDaemon: NSObject {
            let bundleID = app.bundleIdentifier {
             if excludedBundleIDs.contains(bundleID) {
                 if options.verbose {
-                    print("[auto-english-ime] Skipped excluded app: \(bundleID)")
+                    print("[keyghost] Skipped excluded app: \(bundleID)")
                 }
                 return
             }
@@ -213,7 +213,7 @@ final class AppSwitchDaemon: NSObject {
 let options = parseArgs(CommandLine.arguments)
 
 if options.showVersion {
-    print("auto-english-ime \(appVersion)")
+    print("KeyGhost \(appVersion)")
     exit(0)
 }
 

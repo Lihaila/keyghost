@@ -1,14 +1,16 @@
 <div align="center">
 
-# ⌨️ auto-english-ime
+<img src="./assets/logo.svg" alt="KeyGhost Logo" width="128" height="128" />
 
-**每次切换 Mac 应用时，自动把输入法切回英文。**
+# KeyGhost（键盘小幽灵）
+
+**隐形驻留后台的 Mac 键盘小幽灵：每次切换应用，悄悄帮你把输入法弹回英文。**
 
 *约 60 KB · 零权限弹窗 · 无菜单栏图标 · 支持 Apple Silicon 与 Intel*
 
-[![macOS](https://img.shields.io/badge/macOS-13%2B-000000?logo=apple&logoColor=white)](https://github.com/Lihaila/auto-english-ime)
-[![Release](https://img.shields.io/github/v/release/Lihaila/auto-english-ime?color=blue)](https://github.com/Lihaila/auto-english-ime/releases)
-[![CI](https://github.com/Lihaila/auto-english-ime/actions/workflows/ci.yml/badge.svg)](https://github.com/Lihaila/auto-english-ime/actions/workflows/ci.yml)
+[![macOS](https://img.shields.io/badge/macOS-13%2B-000000?logo=apple&logoColor=white)](https://github.com/Lihaila/keyghost)
+[![Release](https://img.shields.io/github/v/release/Lihaila/keyghost?color=blue)](https://github.com/Lihaila/keyghost/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/Lihaila/keyghost/ci.yml?branch=main&label=CI)](https://github.com/Lihaila/keyghost/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
 [English](./README.md) | **简体中文**
@@ -17,16 +19,16 @@
 
 ---
 
-## ✨ 为什么做这个小工具？
+## ✨ 为什么需要 KeyGhost？
 
 在 Mac 上用中文输入法，最烦的瞬间之一就是：刚在微信回完消息，切回浏览器、终端或编辑器准备输网址/命令/快捷键，结果敲出一长串拼音……
 
-**auto-english-ime** 用最干净原生的方式彻底解决这个问题：
+**KeyGhost（键盘小幽灵）** 用最干净原生的方式彻底解决这个问题：
 
-| 特性 | auto-english-ime | 常见图形界面切换工具 |
+| 特性 | 👻 KeyGhost | 常见图形界面切换工具 |
 | :--- | :---: | :---: |
 | **需要「辅助功能 / 输入监控」权限** | ❌ 不需要 | ✅ 通常需要 |
-| **菜单栏 / 程序坞图标** | 完全无感、零打扰 | 常驻图标 |
+| **菜单栏 / 程序坞图标** | 完全隐形、零打扰 | 常驻图标 |
 | **程序体积** | 约 60 KB | 10 – 50 MB |
 | **内存占用** | < 3 MB | 30 – 100 MB |
 | **安装耗时** | 10 秒（复制一行命令） | 下载、拖拽、层层授权 |
@@ -42,20 +44,20 @@
 2. 复制下面这行命令，粘贴到终端里，按 **`回车`**：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Lihaila/auto-english-ime/main/scripts/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Lihaila/keyghost/main/scripts/quick-install.sh | bash
 ```
 
-3. 看到 **`✅ Installation complete!`** 就搞定了！它会立即生效，以后每次重启电脑也会自动运行。
+3. 看到 **`✅ KeyGhost is now haunting your keyboard in the background!`** 就搞定了！它会立即生效，以后每次重启电脑也会自动运行。
 
 > **怎么测试是否生效？**
 > 在任意软件里切到中文输入法，然后鼠标点一下另一个软件窗口 —— 看看屏幕右上角，输入法已经瞬间自动切回 **ABC（英文）** 了！
 
 ### 随时一键卸载
 
-如果以后不想用了，同样打开 **终端**，粘贴回车即可干净卸载：
+如果以后不想用了，同样打开 **终端**，粘贴回车即可让小幽灵干净消失：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Lihaila/auto-english-ime/main/scripts/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Lihaila/keyghost/main/scripts/uninstall.sh | bash
 ```
 
 ---
@@ -64,7 +66,7 @@ curl -fsSL https://raw.githubusercontent.com/Lihaila/auto-english-ime/main/scrip
 
 **默认零配置即可使用**（会自动识别你电脑上的 `ABC` / `U.S.` / `British` 英文键盘）。
 
-如果你想**排除某些软件**（例如：切到微信时不要自动切回英文），或者指定别的默认键盘，只需新建文件 `~/.config/auto-english-ime/config.json`：
+如果你想**排除某些软件**（例如：切到微信时不要自动切回英文），或者指定别的默认键盘，只需新建文件 `~/.config/keyghost/config.json`：
 
 ```json
 {
@@ -97,7 +99,7 @@ osascript -e 'id of app "WeChat"'
 
 查看你电脑上所有已启用的输入法 ID：
 ```bash
-~/.local/bin/auto-english-ime --list
+~/.local/bin/keyghost --list
 ```
 
 </details>
@@ -109,13 +111,13 @@ osascript -e 'id of app "WeChat"'
 如果你更喜欢亲自查看源码并在本地编译：
 
 ```bash
-git clone https://github.com/Lihaila/auto-english-ime.git
-cd auto-english-ime
+git clone https://github.com/Lihaila/keyghost.git
+cd keyghost
 make install
 ```
 
 常用命令：
-- `make build` — 编译 `Sources/main.swift` 到 `build/auto-english-ime`
+- `make build` — 编译 `Sources/main.swift` 到 `build/keyghost`
 - `make install` — 编译并安装启动后台服务
 - `make status` — 查看后台服务运行状态
 - `make list` — 列出所有可用输入法 ID
@@ -135,14 +137,14 @@ make install
 <details>
 <summary><b>2. 重启电脑后还需要手动打开吗？</b></summary>
 
-不需要。安装脚本已经帮你配置了标准的 macOS 开机自启服务（`~/Library/LaunchAgents/com.auto-english-ime.agent.plist`），以后每次开机自动静默运行。
+不需要。安装脚本已经帮你配置了标准的 macOS 开机自启服务（`~/Library/LaunchAgents/com.keyghost.agent.plist`），以后每次开机自动静默运行。
 
 </details>
 
 <details>
 <summary><b>3. 我只是偶尔需要打中文，会妨碍我切中文吗？</b></summary>
 
-完全不会！你在当前软件里随时可以正常按 `Caps Lock` / `⌃ + 空格` 切到中文打字；只有在你**切换到另一个软件**时，它才会贴心地帮你切回英文。
+完全不会！你在当前软件里随时可以正常按 `Caps Lock` / `⌃ + 空格` 切到中文打字；只有在你**切换到另一个软件**时，小幽灵才会贴心地帮你切回英文。
 
 </details>
 

@@ -1,6 +1,6 @@
 PREFIX ?= $(HOME)/.local
 BIN_DIR = $(PREFIX)/bin
-BINARY = build/auto-english-ime
+BINARY = build/keyghost
 
 .PHONY: build install uninstall status list clean
 
@@ -16,7 +16,7 @@ uninstall:
 	@bash scripts/uninstall.sh
 
 status:
-	@launchctl print gui/$$(id -u)/com.auto-english-ime.agent 2>/dev/null | grep -E "state =|pid =" || echo "Not running"
+	@launchctl print gui/$$(id -u)/com.keyghost.agent 2>/dev/null | grep -E "state =|pid =" || echo "Not running"
 
 list: build
 	@$(BINARY) --list

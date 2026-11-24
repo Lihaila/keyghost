@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an improvement for auto-english-ime
+about: Suggest an improvement for KeyGhost
 title: "[Feature] "
 labels: enhancement
 ---

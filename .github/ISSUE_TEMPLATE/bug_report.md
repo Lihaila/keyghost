@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a problem with auto-english-ime
+about: Report a problem with KeyGhost
 title: "[Bug] "
 labels: bug
 ---
@@ -11,7 +11,7 @@ A clear and concise description of what happened.
 **Environment**
 - macOS version: (e.g. macOS 15.3 / macOS 26.5)
 - Chip: (Apple Silicon / Intel)
-- Output of `~/.local/bin/auto-english-ime --list`:
+- Output of `~/.local/bin/keyghost --list`:
 ```text
 paste here
 ```
