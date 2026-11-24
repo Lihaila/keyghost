@@ -21,7 +21,7 @@ If you use Chinese, Japanese, or Korean input methods on macOS, switching from a
 ## Quick Install
 
 ```bash
-git clone https://github.com/<your-username>/auto-english-ime.git
+git clone https://github.com/Lihaila/auto-english-ime.git
 cd auto-english-ime
 make install
 ```

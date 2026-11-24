@@ -21,7 +21,7 @@
 ## 一键安装
 
 ```bash
-git clone https://github.com/<your-username>/auto-english-ime.git
+git clone https://github.com/Lihaila/auto-english-ime.git
 cd auto-english-ime
 make install
 ```
