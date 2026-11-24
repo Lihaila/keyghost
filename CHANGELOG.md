@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2026-11-24
+
+### Improved
+- Automatic fallback to the first enabled ASCII-capable keyboard layout (e.g. German, French, Dvorak, Colemak) when `ABC`, `U.S.`, or `British` is not enabled.
+
 ## [0.2.0] - 2026-11-24
 
 ### Changed

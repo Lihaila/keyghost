@@ -2,7 +2,7 @@ import AppKit
 import Carbon
 import Foundation
 
-let appVersion = "0.2.0"
+let appVersion = "0.2.1"
 let defaultConfigPath = ("~/.config/keyghost/config.json" as NSString).expandingTildeInPath
 
 struct Config: Codable {
@@ -103,6 +103,21 @@ func resolveDefaultTargetInputSource() -> String {
     for candidate in preferred where enabled.contains(candidate) {
         return candidate
     }
+
+    // Fallback to the first enabled ASCII-capable keyboard layout (e.g. German, French, Dvorak, Colemak)
+    let asciiFilter = [
+        kTISPropertyInputSourceCategory as String: kTISCategoryKeyboardInputSource as String,
+        kTISPropertyInputSourceIsSelectCapable as String: true,
+        kTISPropertyInputSourceIsASCIICapable as String: true
+    ] as CFDictionary
+    if let list = TISCreateInputSourceList(asciiFilter, false)?.takeRetainedValue() as? [TISInputSource] {
+        for src in list {
+            if let rawID = TISGetInputSourceProperty(src, kTISPropertyInputSourceID) {
+                return Unmanaged<CFString>.fromOpaque(rawID).takeUnretainedValue() as String
+            }
+        }
+    }
+
     return "com.apple.keylayout.ABC"
 }
 
