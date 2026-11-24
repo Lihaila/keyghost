@@ -1,0 +1,5 @@
+{
+  "targetInputSource": "com.apple.keylayout.ABC",
+  "excludedApps": [],
+  "switchOnWake": true
+}
