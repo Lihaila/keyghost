@@ -21,7 +21,7 @@
 
 ## ✨ Why KeyGhost?
 
-If you type in **Chinese, Japanese, or Korean** on macOS, you know the pain: you finish replying to a message in a chat app, switch back to your terminal, IDE, or browser, start typing a command or shortcut—and accidentally type a string of CJK characters.
+If you type in **Chinese, Japanese, Korean, Russian, Arabic, Thai, or any other non-English input method** on macOS (including third-party IMEs like Sogou, WeChat IME, or Rime), you know the pain: you finish replying to a message in a chat app, switch back to your terminal, IDE, or browser, start typing a command or shortcut—and accidentally type a string of non-English characters.
 
 **KeyGhost** haunts your background quietly and natively:
 
@@ -65,7 +65,7 @@ curl -fsSL https://raw.githubusercontent.com/Lihaila/keyghost/main/scripts/unins
 
 ## ⚙️ Optional Configuration
 
-Works out of the box with zero configuration (automatically detects `ABC`, `U.S.`, or `British`).
+Works out of the box with zero configuration — automatically detects `ABC`, `U.S.`, or `British`, and falls back to your first enabled ASCII-capable keyboard layout (e.g. German, French, Dvorak, Colemak) if none of those are enabled.
 
 If you want to **exclude specific apps** (e.g., keep Chinese when switching to WeChat) or choose a specific keyboard layout, create `~/.config/keyghost/config.json`:
 
